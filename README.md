@@ -10,7 +10,7 @@
 | Rivi Yasha Hafizhan | 2306250535 |
 | Salahuddin Zidane Alghifari | 2206028200 |
 | Farras Hakim Budi Handoyo | - |
-| Anthonius Hendhy Wirawan | - |
+| Anthonius Hendhy Wirawan | 2306161795 |
 | Filaga Tifira Muthi | - |
 | Adhi Rajasa Rafif | - |
 | Dimas Ananda Sutiardi | - |
@@ -213,7 +213,7 @@ sudo cloudstack-setup-databases cloud:<password>@localhost --deploy-as=root:<pas
 Contoh:
 
 ```bash
-sudo cloudstack-setup-databases cloud:cloudgroup10@localhost --deploy-as=root:cloudgroup10
+sudo cloudstack-setup-databases cloud:password@localhost --deploy-as=root:password
 ```
 
 ---
@@ -268,14 +268,13 @@ http://10.0.2.15:8080/client
 
 # Konfigurasi Network
 
-Konfigurasi jaringan dilakukan agar CloudStack dapat diakses melalui jaringan lokal maupun internet.
+Konfigurasi jaringan dilakukan agar management server CloudStack dapat diakses oleh host dari luar jaringan.
 
 ## Langkah Konfigurasi
 
-- Menggunakan Bridge Adapter
-- Menentukan IP static
-- Verifikasi koneksi menggunakan ping
-- Memastikan port 8080 dapat diakses
+- Menggunakan Tailscale 
+- Install dan konfigurasi Tailscale pada management server
+- install dan konfigurasi Tailscale pada host
 
 ---
 
@@ -290,6 +289,7 @@ Project saat ini berhasil melakukan:
 - Menjalankan CloudStack Management Server
 - Mengakses dashboard Apache CloudStack melalui browser
 - Akses dashboard menggunakan IP address lokal
+- Menghubungkan dan mengonfigurasi management server ke Tailscale
 
 CloudStack masih dalam tahap pengembangan dan konfigurasi lanjutan untuk deployment virtual machine dan implementasi mini cloud environment.
 

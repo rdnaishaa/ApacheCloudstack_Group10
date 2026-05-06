@@ -13,7 +13,7 @@
 | Anthonius Hendhy Wirawan | 2306161795 |
 | Filaga Tifira Muthi | - |
 | Adhi Rajasa Rafif | - |
-| Dimas Ananda Sutiardi | - |
+| Dimas Ananda Sutiardi | 2306250586 |
 | R. Aisha Syauqi Ramadhani | 2306250554 |
 
 ---

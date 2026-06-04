@@ -9,7 +9,7 @@
 | Farhan Ramadhani Zakiyyandi | 2306220412 |
 | Rivi Yasha Hafizhan | 2306250535 |
 | Salahuddin Zidane Alghifari | 2206028200 |
-| Farras Hakim Budi Handoyo | - |
+| Fauzan Farras Hakim Budi Handoyo | 2306250610 |
 | Anthonius Hendhy Wirawan | 2306161795 |
 | Filaga Tifira Muthi | - |
 | Adhi Rajasa Rafif | 2306266943 |
@@ -493,4 +493,120 @@ network:
 
 ```bash
 sudo netplan apply
+```
+---
+# Dokumentasi Storage
+
+## 1. Setup NFS
+
+```bash
+sudo apt update
+sudo apt install nfs-ganesha nfs-ganesha-vfs -y
+```
+
+## 2. Membuat Directory Primary dan Secondary
+
+```bash
+sudo mkdir -p /export/primary
+sudo mkdir -p /export/secondary
+sudo chmod 777 /export/primary /export/secondary
+```
+
+## 3. Edit Konfigurasi NFS-Ganesha
+
+```bash
+sudo nano /etc/ganesha/ganesha.conf
+```
+
+```conf
+EXPORT
+{
+    Export_Id = 1;
+    Path = /export/primary;
+    Pseudo = /export/primary;
+    Access_Type = RW;
+    Squash = No_Root_Squash;
+    SecType = "sys";
+    Filesystem_Engine = VFS;
+
+    CLIENT {
+        Clients = *;
+    }
+}
+
+EXPORT
+{
+    Export_Id = 2;
+    Path = /export/secondary;
+    Pseudo = /export/secondary;
+    Access_Type = RW;
+    Squash = No_Root_Squash;
+    SecType = "sys";
+    Filesystem_Engine = VFS;
+
+    CLIENT {
+        Clients = *;
+    }
+}
+```
+
+## 4. Menampilkan IP WSL
+
+```bash
+ip addr show eth0 | grep inet
+```
+
+## 5. Menjalankan NFS-Ganesha
+
+```bash
+sudo systemctl start nfs-ganesha
+```
+
+## 6. Memeriksa Status NFS-Ganesha
+
+```bash
+sudo systemctl status nfs-ganesha
+```
+
+## 7. Install Tailscale
+
+```bash
+curl -fsSL https://tailscale.com/install.sh | sh
+```
+
+## 8. Login ke Tailscale
+
+```bash
+sudo tailscale up --authkey=<AUTH_KEY> --accept-routes
+```
+
+## 9. Menampilkan IP Tailscale
+
+```bash
+tailscale ip -4
+```
+
+## 10. Menampilkan IP Internal Storage
+
+```bash
+ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1
+```
+
+## 11. Restart NFS-Ganesha
+
+```bash
+sudo systemctl restart nfs-ganesha
+sudo systemctl status nfs-ganesha
+```
+
+## 12. Konfigurasi Port Forwarding (Windows PowerShell)
+
+```powershell
+netsh interface portproxy add v4tov4 listenport=2049 listenaddress=<TAILSCALE_IP> connectport=2049 connectaddress=<WSL_IP>
+```
+
+## 13. Verifikasi Port Forwarding
+
+```powershell
+netsh interface portproxy show all
 ```

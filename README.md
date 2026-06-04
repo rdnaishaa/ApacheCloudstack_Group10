@@ -11,7 +11,7 @@
 | Salahuddin Zidane Alghifari | 2206028200 |
 | Fauzan Farras Hakim Budi Handoyo | 2306250610 |
 | Anthonius Hendhy Wirawan | 2306161795 |
-| Filaga Tifira Muthi | - |
+| Filaga Tifira Muthi | 2306208445 |
 | Adhi Rajasa Rafif | 2306266943 |
 | Dimas Ananda Sutiardi | 2306250586 |
 | R. Aisha Syauqi Ramadhani | 2306250554 |

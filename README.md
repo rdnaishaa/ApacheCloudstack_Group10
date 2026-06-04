@@ -202,6 +202,38 @@ sudo systemctl status mysql
 
 ---
 
+# Instalasi Cloudstack Setup Management
+
+Tentu saja menjalankan CloudStack tidak dapat terjadi bila kita tidak menginstall CloudStack sendiri.
+
+## Buat file cloudstack.list
+
+```bash
+sudo nano /etc/apt/sources.list.d/cloudstack.list
+```
+
+## Ketik repository ke dalam file
+```text
+deb https://download.cloudstack.org/ubuntu noble 4.22
+```
+Ketik CTRL+S dan kemudian CTRL+X untuk save dan keluar.
+
+## Tambahkan public key repository ke daftar trusted key
+```bash
+wget -O - https://download.cloudstack.org/release.asc |sudo tee /etc/apt/trusted.gpg.d/cloudstack.asc
+```
+
+## Update cache apt lokal
+```bash
+sudo apt update
+```
+
+## Install CloudStack Setup Management
+```bash
+sudo apt install cloudstack-management -y
+```
+---
+
 # Setup Database CloudStack
 
 ## Membuat Database CloudStack
